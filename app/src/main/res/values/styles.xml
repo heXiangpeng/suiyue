@@ -1,0 +1,67 @@
+<resources>
+
+
+
+
+
+
+    <style name="BaseAppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">#339999</item>
+        <item name="colorPrimaryDark">#339999</item>
+        <item name="colorAccent">#339999</item>
+        <item name="windowActionModeOverlay">true</item>
+
+
+    </style>
+
+    <style name="SwipeBackLayout">
+        <item name="edge_size">50dip</item>
+        <item name="shadow_left">@drawable/shadow_left</item>
+        <item name="shadow_right">@drawable/shadow_right</item>
+        <item name="shadow_bottom">@drawable/shadow_bottom</item>
+    </style>
+
+    <style name="MyTheme" parent="AppTheme">
+        <item name="android:windowIsTranslucent">true</item>
+        <!-- Customize your theme here. -->
+    </style>
+
+    <!-- App Theme -->
+    <style name="AppTheme" parent="BaseAppTheme" />
+
+
+
+    <!-- App Theme FitsStatusBar -->
+    <style name="AppTheme.FitsStatusBar" />
+
+
+    <style name="mProgress_circle">
+        <item name="android:indeterminateDrawable">@drawable/loadind_cir</item>
+
+        <item name="android:minWidth">25dp</item>
+        <item name="android:minHeight">25dp</item>
+        <item name="android:maxWidth">60dp</item>
+        <item name="android:maxHeight">60dp</item>
+        <item name="android:windowBackground">@drawable/dialogback</item>
+
+
+
+    </style>
+
+    <style name="mydialogstyle" parent="android:style/Theme.Dialog">
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowIsTranslucent">false</item>
+        <item name="android:windowNoTitle">true</item><!--除去title-->
+        <item name="android:windowContentOverlay">@null</item>
+
+        <item name="android:background">@drawable/loadingconer</item>
+        <item name="android:windowBackground">@drawable/dialogback</item>
+    </style>
+
+
+
+
+
+
+</resources>

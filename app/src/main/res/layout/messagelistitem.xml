@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:background="#fff"
+    android:orientation="vertical"
+
+    >
+
+
+    <LinearLayout
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_width="fill_parent"
+
+        android:layout_gravity="center"
+        android:background="#fff"
+        android:orientation="horizontal"
+        android:layout_height="50dp">
+
+        <customview.RoundImageView
+            android:id="@+id/img_messagephoto"
+            android:layout_gravity="center"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical">
+            <TextView
+                android:id="@+id/text_messagefrom"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="和相鹏"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:textSize="12dp"
+                android:textColor="#000"
+                />
+
+
+            <TextView
+                android:id="@+id/text_lastmessage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="我是小学生,我哥发明我是为了帮助世人"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:textSize="9dp"
+                android:textColor="#823e3e3e"
+                />
+
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            >
+            <TextView
+                android:id="@+id/text_mesgnum"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:gravity="center"
+                android:background="@drawable/messagenum"
+                android:text="7"
+                android:textSize="10dp"
+                android:textColor="#ffb9ff99"
+                />
+            </LinearLayout>
+
+    </LinearLayout>
+
+
+</LinearLayout>

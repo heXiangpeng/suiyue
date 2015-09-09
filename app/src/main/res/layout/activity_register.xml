@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#fff"
+    >
+
+    <LinearLayout
+
+
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:elevation="2dp"
+        android:background="@color/navgation"
+        android:orientation="horizontal">
+
+
+        <ImageView
+            android:id="@+id/register_back"
+            android:layout_marginLeft="10dp"
+            android:layout_gravity="center"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+
+            android:background="@drawable/backrow"/>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="50dp"
+
+            android:gravity="center"
+            android:orientation="vertical"
+            android:layout_marginRight="20dp"
+            >
+
+
+
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:text="注册"
+
+                android:textColor="@color/navgationitem"
+                android:textSize="18dp"
+
+                />
+
+        </LinearLayout>
+
+        </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="20dp"
+        >
+
+        <EditText
+            android:id="@+id/edit_regusername"
+            android:layout_width="fill_parent"
+            android:layout_height="50dp"
+            android:background="@drawable/inputcornear"
+            android:hint="电话|邮箱"
+            android:drawableLeft="@drawable/user"
+            />
+
+        <EditText
+            android:id="@+id/edit_regpasswd"
+            android:layout_width="fill_parent"
+            android:layout_height="50dp"
+
+            android:hint="密   码"
+            android:background="@drawable/inputcornear"
+            android:drawableLeft="@drawable/pas"
+            />
+
+        <EditText
+
+            android:id="@+id/edit_name"
+            android:layout_marginTop="10dp"
+            android:layout_width="fill_parent"
+            android:layout_height="50dp"
+
+            android:hint="昵  称"
+            android:background="@drawable/inputcornear"
+
+            />
+
+
+        <Button
+            android:id="@+id/btn_reg"
+
+            android:background="@drawable/buttoncornear"
+            android:layout_width="fill_parent"
+            android:layout_height="35dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:text="注册完成"
+            android:textColor="@color/navgationitem"
+            android:textSize="18dp"
+            android:elevation="0dp"
+            />
+
+    </LinearLayout>
+
+</LinearLayout>

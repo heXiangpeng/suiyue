@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="#fffbfffb"
+    >
+
+
+    <android.support.v7.widget.CardView
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#001"
+
+        app:cardCornerRadius="5dp"
+        android:layout_marginLeft="7dp"
+        android:layout_marginRight="7dp"
+
+
+
+        >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            >
+
+            <TextView
+                android:gravity="center_vertical"
+                android:id="@+id/addnewfriend_idcode"
+                android:layout_width="match_parent"
+                android:textColor="#000"
+                android:text="我是傻瓜"
+                android:textSize="18dp"
+                android:layout_height="30dp" />
+            <TextView
+                android:layout_marginTop="5dp"
+                android:paddingLeft="15dp"
+               android:gravity="center_vertical"
+                android:id="@+id/addnewfriend_name"
+                android:layout_width="match_parent"
+                android:layout_height="20dp"
+                android:textColor="@color/navgationitem"
+                android:text="我是傻瓜"
+                android:textSize="15dp"
+                />
+
+
+            </LinearLayout>
+
+
+
+
+
+        </android.support.v7.widget.CardView>
+
+
+</LinearLayout>

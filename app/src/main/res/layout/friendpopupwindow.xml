@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#fff"
+    android:layout_margin="0dp"
+    android:layout_marginLeft="5dp"
+    >
+
+
+    <LinearLayout
+        android:id="@+id/linear_addfriend"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+
+        android:gravity="center_vertical"
+        android:background="@drawable/popupwindowshape"
+        >
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/useradd"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="#ffb6b5b5"
+            android:textSize="18dp"
+            android:text="添加好友"
+            />
+
+        </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linear_scan"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:background="#fff"
+        android:layout_marginTop="5dp"
+        >
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/scan"/>
+
+        <TextView
+            android:textColor="#ffb6b5b5"
+            android:textSize="18dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="扫一扫"
+            />
+
+    </LinearLayout>
+
+</LinearLayout>
