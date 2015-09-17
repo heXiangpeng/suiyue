@@ -18,6 +18,8 @@ import android.os.Handler;
 import android.os.Message;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.RecyclerView;
+import android.telephony.TelephonyManager;
+import android.telephony.gsm.GsmCellLocation;
 import android.transition.Explode;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -54,9 +56,10 @@ import com.easemob.chat.EMContactManager;
 import com.easemob.chat.EMConversation;
 import com.easemob.chat.EMMessage;
 import com.easemob.chat.LocationMessageBody;
-import com.google.gson.Gson;
+
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
+import com.umeng.analytics.MobclickAgent;
 
 import java.lang.reflect.Type;
 import java.net.URLEncoder;
@@ -181,6 +184,20 @@ public class FriendListActivity extends Activity {
         }
     };
 
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        MobclickAgent.onResume(this);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        MobclickAgent.onPause(this);
+
+
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

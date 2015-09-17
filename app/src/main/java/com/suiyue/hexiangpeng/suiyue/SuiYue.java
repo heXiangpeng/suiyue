@@ -7,6 +7,7 @@ import android.util.Log;
 
 
 import com.easemob.chat.EMChat;
+import com.tencent.bugly.crashreport.CrashReport;
 
 import java.util.Iterator;
 import java.util.List;
@@ -28,6 +29,8 @@ public class SuiYue extends Application {
 
         String processAppName = getAppName(pid);
 
+
+
         if (processAppName == null ||!processAppName.equalsIgnoreCase("com.suiyue.hexiangpeng.suiyue")) {
             Log.e("服务", "enter the service process!");
             //"com.easemob.chatuidemo"为demo的包名，换到自己项目中要改成自己包名
@@ -36,6 +39,11 @@ public class SuiYue extends Application {
             return;
         }
 
+
+        CrashReport.initCrashReport(this,"900008803",false);
+
+
+      
 
         EMChat.getInstance().init(this);
 

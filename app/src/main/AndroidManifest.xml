@@ -1,16 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.suiyue.hexiangpeng.suiyue" >
+    package="com.suiyue.hexiangpeng.suiyue">
 
 
-
-    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
 
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.RECEIVE_SMS" />
+    <uses-permission android:name="android.permission.READ_SMS" />
     <uses-permission android:name="android.permission.GET_TASKS" />
-
 
 
     <!-- Required -->
@@ -19,50 +18,68 @@
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"/>
+    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
 
     <uses-permission android:name="android.permission.GET_TASKS" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
+    <uses-permission android:name="android.permission.CHANGE_CONFIGURATION" />
 
 
-    <uses-feature android:name="android.hardware.camera" />        <!-- 使用照相机权限 -->
+    <uses-feature android:name="android.hardware.camera" />
+    <!-- 使用照相机权限 -->
     <uses-feature android:name="android.hardware.camera.autofocus" />
 
     <!--允许应用读取低级别的系统日志文件 -->
     <uses-permission android:name="android.permission.READ_LOGS"></uses-permission>
 
-    <uses-permission android:name="android.permission.DISABLE_KEYGUARD"/>
+    <uses-permission android:name="android.permission.DISABLE_KEYGUARD" />
 
 
     <application
-         android:name=".SuiYue"
+        android:name=".SuiYue"
         android:allowBackup="true"
         android:icon="@drawable/icon"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme" >
-
+        android:theme="@style/AppTheme">
 
 
         <meta-data
             android:name="com.amap.api.v2.apikey"
             android:value="1337b25c7f6868c08a87df5bc4648c41" />
 
-        <meta-data android:name="EASEMOB_APPKEY"  android:value="hexiangpeng#suiyue" />
+        <meta-data
+            android:name="EASEMOB_APPKEY"
+            android:value="hexiangpeng#suiyue" />
         <!-- 声明sdk所需的service SDK核心功能-->
 
+        <meta-data
+            android:name="UMENG_APPKEY"
+            android:value="55f2b670e0f55a9e110022cf"></meta-data>
+        <meta-data
+            android:name="UMENG_CHANNEL"
+            android:value="wandoujia" />
+
+
+        <meta-data
+            android:name="com.amap.api.v2.apikey"
+            android:value="1337b25c7f6868c08a87df5bc4648c41" />
+
+
         <service android:name="com.easemob.chat.EMChatService" />
+
         <activity
             android:name=".Spalash"
-            android:theme="@style/AppTheme.FitsStatusBar"
-            android:label="@string/app_name" >
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme.FitsStatusBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -71,74 +88,77 @@
         </activity>
 
 
+        <activity
+            android:name=".LoginActivity"
+
+            android:theme="@style/AppTheme.FitsStatusBar"></activity>
 
 
-        <activity android:name=".LoginActivity"
+        <activity
+            android:name=".AboutActivity"
 
-           android:theme="@style/AppTheme.FitsStatusBar"
-            ></activity>
-        <activity android:name=".NewMessageActivity"
+            android:theme="@style/AppTheme.FitsStatusBar"></activity>
 
-            android:theme="@style/AppTheme.FitsStatusBar"
-            ></activity>
+        <activity
+            android:name=".RegisterFragments"
 
-        <activity android:name=".RegisterActivity"
+            android:theme="@style/AppTheme.FitsStatusBar"></activity>
 
-            android:theme="@style/AppTheme.FitsStatusBar"
-            ></activity>
+        <activity
+            android:name=".NewMessageActivity"
+
+            android:theme="@style/AppTheme.FitsStatusBar"></activity>
+
+        <activity
+            android:name=".RegisterActivity"
+
+            android:theme="@style/AppTheme.FitsStatusBar"></activity>
 
 
-        <activity android:name=".AddNewFriendActivity"
+        <activity
+            android:name=".AddNewFriendActivity"
 
-            android:theme="@style/AppTheme.FitsStatusBar"
-            ></activity>
+            android:theme="@style/AppTheme.FitsStatusBar"></activity>
 
 
         <!-- 隐藏键盘 --><!-- 全屏 -->
         <activity
-            android:configChanges="orientation|keyboardHidden"
             android:name="zxing.activity.CaptureActivity"
+            android:configChanges="orientation|keyboardHidden"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen"
-            android:windowSoftInputMode="stateAlwaysHidden" >
-        </activity>
+            android:windowSoftInputMode="stateAlwaysHidden"></activity>
 
 
-        <activity android:name=".MianHome"
+        <activity
+            android:name=".MianHome"
 
-            android:theme="@style/MyTheme"
-            ></activity>
-        <activity android:name=".FriendListActivity"
+            android:theme="@style/AppTheme.FitsStatusBar"></activity>
+        <activity
+            android:name=".FriendListActivity"
 
-            android:theme="@style/AppTheme.FitsStatusBar"
-            ></activity>
-        <activity android:name=".ContactActivity"
+            android:theme="@style/AppTheme.FitsStatusBar"></activity>
+        <activity
+            android:name=".ContactActivity"
+            android:theme="@style/AppTheme.FitsStatusBar"></activity>
 
+        <activity
+            android:name=".MessageListActivity"
+            android:theme="@style/AppTheme.FitsStatusBar"></activity>
 
-            android:theme="@style/AppTheme.FitsStatusBar"
-            ></activity>
+        <activity
+            android:name=".SetActivity"
+            android:theme="@style/AppTheme.FitsStatusBar"></activity>
+        <activity
+            android:name=".FriendSpaceActivity"
+            android:theme="@style/AppTheme.FitsStatusBar"></activity>
 
-        <activity android:name=".MessageListActivity"
-            android:theme="@style/AppTheme.FitsStatusBar"
-            ></activity>
-
-        <activity android:name=".SetActivity"
-            android:theme="@style/AppTheme.FitsStatusBar"
-            ></activity>
-        <activity android:name=".FriendSpaceActivity"
-            android:theme="@style/AppTheme.FitsStatusBar"
-            ></activity>
-
-        <activity android:name=".QrcodeActivity"
-            android:theme="@style/AppTheme.FitsStatusBar"
-            ></activity>
+        <activity
+            android:name=".QrcodeActivity"
+            android:theme="@style/AppTheme.FitsStatusBar"></activity>
 
 
-
-        <activity android:name=".MultyLocationActivity"
-
-            android:theme="@style/AppTheme.FitsStatusBar"
-            ></activity>
     </application>
+
 
 </manifest>

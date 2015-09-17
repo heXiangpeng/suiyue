@@ -17,24 +17,34 @@
      android:layout_width="fill_parent"
      android:layout_height="match_parent"
      android:orientation="vertical"
-     android:layout_marginRight="10dp"
-     android:layout_marginLeft="10dp"
+
      android:gravity="center"
      >
 
 
+     <TextView
+         android:layout_width="fill_parent"
+         android:background="@color/grey"
+         android:layout_height="1dp">
 
+     </TextView>
     <EditText
         android:id="@+id/edit_username"
         android:layout_width="fill_parent"
 
+        android:inputType="phone"
 
         android:layout_height="50dp"
         android:background="@drawable/inputcornear"
-        android:hint="用户名"
-        android:drawableLeft="@drawable/username"
-        />
+        android:hint="手机号"
 
+        />
+     <TextView
+         android:layout_width="fill_parent"
+         android:background="@color/grey"
+         android:layout_height="1dp">
+
+     </TextView>
 
 
 
@@ -45,11 +55,18 @@
         android:layout_height="50dp"
 
 
+        android:inputType="textWebPassword"
 
         android:hint="密   码"
         android:background="@drawable/inputcornear"
-        android:drawableLeft="@drawable/password"
+
         />
+     <TextView
+         android:layout_width="fill_parent"
+         android:background="@color/grey"
+         android:layout_height="1dp">
+
+         </TextView>
 
 
 

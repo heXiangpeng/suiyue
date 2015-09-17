@@ -14,8 +14,11 @@
 
     </style>
 
-    <style name="SwipeBackLayout">
-        <item name="edge_size">50dip</item>
+    <style name="SwipeBackLayout" parent="Theme.AppCompat.Light.NoActionBar">
+        <!--<item name="edge_size">50dip</item>-->
+        <item name="colorPrimary">#339999</item>
+        <item name="colorPrimaryDark">#339999</item>
+        <item name="colorAccent">#339999</item>
         <item name="shadow_left">@drawable/shadow_left</item>
         <item name="shadow_right">@drawable/shadow_right</item>
         <item name="shadow_bottom">@drawable/shadow_bottom</item>
@@ -27,7 +30,9 @@
     </style>
 
     <!-- App Theme -->
-    <style name="AppTheme" parent="BaseAppTheme" />
+    <style name="AppTheme" parent="BaseAppTheme" >
+        <item name="android:windowIsTranslucent">true</item>
+    </style>
 
 
 

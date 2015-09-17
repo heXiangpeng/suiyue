@@ -16,6 +16,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.os.Parcelable;
+import android.support.design.widget.Snackbar;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -39,6 +40,7 @@ import com.amap.api.location.LocationProviderProxy;
 import com.easemob.EMCallBack;
 import com.easemob.chat.EMChatManager;
 import com.easemob.chat.EMGroupManager;
+import com.umeng.analytics.MobclickAgent;
 
 import gps.GetGPS;
 import http.Http;
@@ -46,8 +48,9 @@ import http.ParserJson;
 import http.UserInfo;
 
 
-public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
+public class LoginActivity extends AppCompatActivity implements View.OnClickListener,AMapLocationListener{
 
+    private LocationManagerProxy mLocationManagerProxy;
 
     private EditText username;
     private EditText passwd;
@@ -69,6 +72,13 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                   Intent mainactivity=new Intent(LoginActivity.this,MianHome.class);
                   startActivity(mainactivity);
                   break;
+              case 3:
+                  dialog.cancel();
+
+
+
+                  Toast.makeText(LoginActivity.this,"用户名或密码有误",Toast.LENGTH_SHORT).show();
+                  break;
               default:
                   break;
           }
@@ -81,6 +91,40 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 //        super.onBackPressed();
 //        finishAfterTransition();
 //    }
+
+
+    @Override
+    public void onProviderEnabled(String provider) {
+
+    }
+
+    @Override
+    public void onLocationChanged(Location location) {
+        Log.e("login定位","124");
+    }
+
+    @Override
+    public void onLocationChanged(AMapLocation aMapLocation) {
+        if(aMapLocation != null && aMapLocation.getAMapException().getErrorCode() == 0){
+            //获取位置信息
+            Double geoLat = aMapLocation.getLatitude();
+            Double geoLng = aMapLocation.getLongitude();
+
+            Log.e("login定位",geoLat+":"+geoLng);
+        }
+    }
+
+
+
+    @Override
+    public void onStatusChanged(String provider, int status, Bundle extras) {
+
+    }
+
+    @Override
+    public void onProviderDisabled(String provider) {
+
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -99,6 +143,36 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         login.setOnClickListener(this);
 
         register.setOnClickListener(this);
+
+    }
+
+    private void init() {
+        mLocationManagerProxy = LocationManagerProxy.getInstance(this);
+        //此方法为每隔固定时间会发起一次定位请求，为了减少电量消耗或网络流量消耗，
+        //注意设置合适的定位时间的间隔，并且在合适时间调用removeUpdates()方法来取消定位请求
+        //在定位结束后，在合适的生命周期调用destroy()方法
+        //其中如果间隔时间为-1，则定位只定一次
+        mLocationManagerProxy.requestLocationData(LocationProviderProxy.AMapNetwork, 60*1000, 15, this);
+        mLocationManagerProxy.setGpsEnable(false);
+    }
+
+
+
+
+
+
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        MobclickAgent.onResume(this);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        MobclickAgent.onPause(this);
+
 
     }
 
@@ -129,7 +203,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                break;
            case R.id.btn_register:
 
-               Intent regis=new Intent(LoginActivity.this,RegisterActivity.class);
+               Intent regis=new Intent(LoginActivity.this,RegisterFragments.class);
                startActivity(regis);
                finish();
 
@@ -157,17 +231,17 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
                 ParserJson pa=new ParserJson();
                String re= http.GetUserInfo(name);
-               UserInfo userInfo = pa.parserUser(re);
+               UserInfo userInf = pa.parserUser(re);
 
 
 
-                Log.d("main", "登陆聊天服务器成功！");
+                Log.d("main",name);
                 SharedPreferences userinfo=getSharedPreferences("userinfo",0);
                 userinfo.edit().putString("name",name).commit();
                 userinfo.edit().putString("pass",passwd).commit();
-                userinfo.edit().putString("realname",userInfo.name.get(0)).commit();
-                userinfo.edit().putString("photo",userInfo.photo.get(0)).commit();
-                userinfo.edit().putString("location",userInfo.location.get(0)).commit();
+                userinfo.edit().putString("realname",userInf.name.get(0)).commit();
+                userinfo.edit().putString("photo",userInf.photo.get(0)).commit();
+                userinfo.edit().putString("location",userInf.location.get(0)).commit();
 
                 Message message = new Message();
                 message.what =2;
@@ -180,7 +254,10 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
             @Override
             public void onError(int i, String s) {
-                Toast.makeText(LoginActivity.this,"用户名货密码有误",Toast.LENGTH_SHORT).show();
+                Message message = new Message();
+                message.what =3;
+                myhandler.sendMessage(message);
+
             }
 
             @Override

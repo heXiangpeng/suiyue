@@ -25,6 +25,12 @@ public class ParserJson {
     public UserInfo parserUserInfo(String result){
         JSONObject obj = null;
 
+        userInfo.idcode=new ArrayList<>();
+        userInfo.name=new ArrayList<>();
+        userInfo.persontext=new ArrayList<>();
+        userInfo.photo=new ArrayList<>();
+        userInfo.location=new ArrayList<>();
+
 
 
         try {
@@ -52,6 +58,12 @@ public class ParserJson {
 
     public UserInfo parserUser(String result){
         JSONObject obj = null;
+
+        userInfo.idcode=new ArrayList<>();
+        userInfo.name=new ArrayList<>();
+        userInfo.persontext=new ArrayList<>();
+        userInfo.photo=new ArrayList<>();
+        userInfo.location=new ArrayList<>();
 
 
         try {
@@ -126,6 +138,7 @@ public class ParserJson {
                     friendList.idcode.add(obj.get("idcode").toString());
                     friendList.name.add(obj.get("name").toString());
                     friendList.persontext.add(obj.get("persontext").toString());
+                    friendList.photo.add(obj.get("photo").toString());
                 }
 
             }

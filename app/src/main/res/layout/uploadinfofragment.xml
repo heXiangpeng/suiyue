@@ -1,0 +1,99 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="center_horizontal"
+    android:background="#ebe8e8"
+
+    android:baselineAligned="false"
+    android:orientation="vertical"
+    tools:context=".LoginActivity">
+
+
+    <LinearLayout
+
+        android:layout_width="fill_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+
+        android:orientation="vertical">
+
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="1dp"
+            android:background="@color/grey">
+
+        </TextView>
+
+        <EditText
+            android:id="@+id/ver_name"
+            android:layout_width="fill_parent"
+
+
+            android:layout_height="50dp"
+            android:background="@drawable/inputcornear"
+            android:hint="昵称"
+
+            />
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="1dp"
+            android:background="@color/grey">
+
+        </TextView>
+
+        <EditText
+            android:id="@+id/ver_pass"
+            android:layout_width="fill_parent"
+
+
+            android:layout_height="50dp"
+
+            android:background="@drawable/inputcornear"
+            android:hint="密码"
+
+            />
+
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="1dp"
+            android:background="@color/grey">
+
+        </TextView>
+
+
+        <LinearLayout
+            android:id="@+id/linear_uploadinfo"
+            android:layout_width="fill_parent"
+
+            android:layout_height="40dp"
+
+            android:layout_margin="10dp"
+            android:background="@drawable/buttoncornear"
+            android:elevation="3dp"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:textSize="18dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="注册完成"
+                android:textSize="18dp"
+
+                android:textColor="#000"
+
+
+                />
+
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+
+</LinearLayout>

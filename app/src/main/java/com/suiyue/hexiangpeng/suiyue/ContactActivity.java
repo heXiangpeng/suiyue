@@ -21,6 +21,8 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.view.animation.TranslateAnimation;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -34,6 +36,7 @@ import com.easemob.chat.EMMessage;
 import com.easemob.chat.TextMessageBody;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.listener.SimpleImageLoadingListener;
+import com.umeng.analytics.MobclickAgent;
 
 import java.util.List;
 
@@ -59,11 +62,16 @@ public class ContactActivity extends SwipeBackActivity implements View.OnClickLi
     private TextView name;
 
     private EditText textMessage;
-    private FloatingActionButton sendbutton;
+    private Button sendbutton;
+
+   
 
     private ListView listmessage;
 
     private ImageView back;
+
+    int widdth;
+    int height;
 
 
     private DataBaseSuiyue dataBaseSuiyue;
@@ -107,6 +115,20 @@ public class ContactActivity extends SwipeBackActivity implements View.OnClickLi
         tintManager.setStatusBarTintEnabled(true);
         tintManager.setStatusBarTintResource(R.color.navgation);
         // tintManager.setStatusBarTintDrawable(getResources().getDrawable(R.drawable.index_top_bg));
+
+
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        MobclickAgent.onResume(this);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        MobclickAgent.onPause(this);
 
 
     }
@@ -166,9 +188,16 @@ public class ContactActivity extends SwipeBackActivity implements View.OnClickLi
         mSwipeBackLayout.setEdgeTrackingEnabled(SwipeBackLayout.EDGE_LEFT);
 
 
+
+
+        setStatusStyle();
+
+        widdth=this.getWindowManager().getDefaultDisplay().getWidth();
+        height=this.getWindowManager().getDefaultDisplay().getHeight();
+
         setContentView(R.layout.activity_contact);
         messageListActivity = new Intent(ContactActivity.this, MianHome.class);
-        setStatusStyle();
+
         dataBaseSuiyue = new DataBaseSuiyue(this);
         db = dataBaseSuiyue.getWritableDatabase();
 
@@ -345,17 +374,27 @@ public class ContactActivity extends SwipeBackActivity implements View.OnClickLi
         photo = (ImageView) findViewById(R.id.img_contact_photo);
         name = (TextView) findViewById(R.id.text_contact_name);
 
-        Animation ph = AnimationUtils.loadAnimation(this, R.anim.contact_photo_in);
 
-        photo.setAnimation(ph);
+
+
+        Animation an=new TranslateAnimation(-widdth/2,0,0,0);
+        an.setDuration(500);
+
+        photo.setAnimation(an);
+        name.setAnimation(an);
+
+
 
         textMessage = (EditText) findViewById(R.id.text_message);
 
 
-        sendbutton = (FloatingActionButton) findViewById(R.id.contact_send);
+        sendbutton = (Button) findViewById(R.id.contact_send);
         listmessage = (ListView) findViewById(R.id.list_contact);
 
         back = (ImageView) findViewById(R.id.contact_back);
+        an.setStartOffset(500);
+        back.setAnimation(an);
+
     }
 
 

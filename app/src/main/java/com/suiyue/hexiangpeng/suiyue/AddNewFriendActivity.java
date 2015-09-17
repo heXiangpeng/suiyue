@@ -106,6 +106,7 @@ public class AddNewFriendActivity extends Activity  {
                     addNewFriendAdapter=new AddNewFriendAdapter(friendList);
                     lv.setAdapter(addNewFriendAdapter);
                     addNewFriendAdapter.notifyDataSetChanged();
+                    break;
 
                 case 10:
 
@@ -113,6 +114,10 @@ public class AddNewFriendActivity extends Activity  {
                     Toast.makeText(AddNewFriendActivity.this,"好友请求成功！",Toast.LENGTH_SHORT).show();
 
 
+
+                    break;
+
+                default:
 
                     break;
 

@@ -61,6 +61,7 @@ public class Http {
     public String GetUserInfo(String idcode){
         String ur="http://suiyue520.sinaapp.com/getuserinfo?idcode="+idcode;
         String re=sendHttp(ur);
+        System.out.println("返回的登录"+re);
 
         return re;
 
@@ -102,7 +103,7 @@ public class Http {
         String ur="http://suiyue520.sinaapp.com/registe?idcode="+idcode+"&passwd="+passwd+"&name="+name+"&persontext="+persontext;
         String re = sendHttp(ur);
 
-        Log.e("re",re);
+//        Log.e("re",re);
 
         return re;
 

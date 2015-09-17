@@ -13,10 +13,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 
+import com.suiyue.hexiangpeng.suiyue.R;
+
 import java.util.ArrayList;
 import java.util.List;
 
-import poem.stefory.com.myapplication.R;
+
 
 public class SwipeBackLayout extends FrameLayout {
     /**
@@ -47,6 +49,8 @@ public class SwipeBackLayout extends FrameLayout {
      * Edge flag set indicating all edges should be affected.
      */
     public static final int EDGE_ALL = EDGE_LEFT | EDGE_RIGHT | EDGE_BOTTOM;
+
+
 
     /**
      * A view is not currently being dragged or animating as a result of a

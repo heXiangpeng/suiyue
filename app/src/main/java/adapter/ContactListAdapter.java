@@ -125,12 +125,7 @@ public class ContactListAdapter extends BaseAdapter {
 
 
                         textViewSend.setText(txtBody.getMessage());
-                    if (numbermessage!=messages.size()) {
 
-
-
-                        textViewSend.setAnimation(textmessage);
-                      }
 
                 }
             }

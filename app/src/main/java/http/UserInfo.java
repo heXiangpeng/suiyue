@@ -8,11 +8,11 @@ import java.util.List;
  */
 public class UserInfo {
 
-    public List<String> idcode=new ArrayList<>();
-    public List<String> name= new ArrayList<>();
-    public List<String>  persontext=new ArrayList<>();
-    public List<String>  photo=new ArrayList<>();
-    public List<String>  location=new ArrayList<>();
+    public List<String> idcode;
+    public List<String> name;
+    public List<String>  persontext;
+    public List<String>  photo;
+    public List<String>  location;
 
-    public List<String>   distance=new ArrayList<>();
+    public List<String>   distance;
 }

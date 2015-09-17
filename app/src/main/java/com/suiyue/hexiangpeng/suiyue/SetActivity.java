@@ -52,7 +52,7 @@ public class SetActivity extends Activity implements View.OnClickListener {
     private SQLiteDatabase db;
 
 
-    private String[] mDataset={"附近消息","好友圈","我的二维码","关于","注销"};
+    private String[] mDataset={"好友圈","我的二维码","关于","注销"};
     private int[] img={R.drawable.near,R.drawable.friend,R.drawable.qrcode,R.drawable.about,R.drawable.exit};
 
 
@@ -163,7 +163,7 @@ public class SetActivity extends Activity implements View.OnClickListener {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Log.e("list",position+"点击了"+id);
-                if (position==1){
+                if (position==0){
                     Intent friendSpace=new Intent(SetActivity.this,FriendSpaceActivity.class);
 
 
@@ -171,13 +171,18 @@ public class SetActivity extends Activity implements View.OnClickListener {
                     startActivity(friendSpace);
                 }
 
-                if (position==2){
+                if (position==1){
                     Intent qrcode=new Intent(SetActivity.this,QrcodeActivity.class);
                     startActivity(qrcode);
                 }
 
+                if (position==2){
+                    Intent about=new Intent(SetActivity.this,AboutActivity.class);
+                    startActivity(about);
+                }
 
-                if (position==4){
+
+                if (position==3){
 
                     SharedPreferences userinfo=getSharedPreferences("userinfo",0);
                     userinfo.edit().clear().commit();

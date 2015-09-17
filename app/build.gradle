@@ -1,8 +1,16 @@
 apply plugin: 'com.android.application'
+apply plugin: 'bugly'
 
 android {
     compileSdkVersion 21
     buildToolsVersion "20.0.0"
+
+
+    sourceSets {
+        main {
+            jniLibs.srcDirs = ['libs']
+        }
+    }
 
     defaultConfig {
         applicationId "com.suiyue.hexiangpeng.suiyue"
@@ -34,5 +42,13 @@ dependencies {
     compile files('libs/universal-image-loader-1.9.4.jar')
     compile files('libs/zxingcore.jar')
     compile files('libs/easemobchat_2.2.0.jar')
-    compile files('libs/gson-2.2.4.jar')
+
+    compile files('libs/SMSSDK-1.1.5.jar')
+    compile 'com.umeng.analytics:analytics:latest.integration'
+
+}
+
+bugly {
+    appId = "900008803"
+    appKey = "urPCKabzVJOGbWKL"
 }

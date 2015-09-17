@@ -64,8 +64,8 @@
             android:layout_width="fill_parent"
             android:layout_height="50dp"
             android:background="@drawable/inputcornear"
-            android:hint="电话|邮箱"
-            android:drawableLeft="@drawable/user"
+            android:hint="手机号"
+
             />
 
         <EditText
@@ -75,17 +75,17 @@
 
             android:hint="密   码"
             android:background="@drawable/inputcornear"
-            android:drawableLeft="@drawable/pas"
+
             />
 
         <EditText
 
             android:id="@+id/edit_name"
-            android:layout_marginTop="10dp"
+
             android:layout_width="fill_parent"
             android:layout_height="50dp"
 
-            android:hint="昵  称"
+            android:hint="昵   称"
             android:background="@drawable/inputcornear"
 
             />
@@ -96,10 +96,10 @@
 
             android:background="@drawable/buttoncornear"
             android:layout_width="fill_parent"
-            android:layout_height="35dp"
+            android:layout_height="40dp"
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"
-            android:text="注册完成"
+            android:text="注册"
             android:textColor="@color/navgationitem"
             android:textSize="18dp"
             android:elevation="0dp"

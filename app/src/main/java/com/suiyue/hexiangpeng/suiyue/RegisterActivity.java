@@ -24,6 +24,8 @@ import com.easemob.chat.EMGroupManager;
 
 import java.util.Random;
 
+import cn.smssdk.EventHandler;
+import cn.smssdk.SMSSDK;
 import http.Http;
 import utils.SIMCardInfo;
 
@@ -35,6 +37,9 @@ public class RegisterActivity extends Activity {
     private EditText useridecode;
     private EditText userpasswd;
     private EditText username;
+
+
+
 
     private String idcde;
     private String pa;
@@ -110,6 +115,9 @@ public class RegisterActivity extends Activity {
     };
 
 
+
+
+
     @Override
     protected void onDestroy() {
         // TODO Auto-generated method stub
@@ -120,6 +128,7 @@ public class RegisterActivity extends Activity {
             // TODO: handle exception
         }
         super.onDestroy();
+        SMSSDK.unregisterAllEventHandler();
     }
 
 
@@ -137,6 +146,16 @@ public class RegisterActivity extends Activity {
 
         register=(Button) findViewById(R.id.btn_reg);
         back=(ImageView) findViewById(R.id.register_back);
+
+
+
+
+
+
+
+
+
+
 
         back.setOnClickListener(new View.OnClickListener() {
             @Override

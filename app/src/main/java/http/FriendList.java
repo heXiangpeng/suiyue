@@ -10,4 +10,5 @@ public class FriendList {
     public List<String> idcode     =new ArrayList<>();
     public List<String> name       = new ArrayList<>();
     public List<String> persontext =new ArrayList<>();
+    public List<String> photo =new ArrayList<>();
 }

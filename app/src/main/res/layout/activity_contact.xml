@@ -93,13 +93,13 @@
         <EditText
             android:id="@+id/text_message"
 
-            android:background="@color/grey"
+            android:background="@drawable/inputcornear"
 
             android:layout_margin="2dp"
 
             android:layout_gravity="center"
             android:layout_width="0dp"
-          android:layout_weight="0.9"
+            android:layout_weight="0.9"
             android:textSize="15dp"
             android:hint="  输入"
             android:layout_height="match_parent"
@@ -107,21 +107,26 @@
             />
 
 
-            <android.support.design.widget.FloatingActionButton
+            <Button
 
                 android:id="@+id/contact_send"
 
+                android:textSize="15dp"
+
+                android:background="@color/grey"
                 android:layout_marginRight="5dp"
-                android:layout_width="45dp"
+                android:layout_width="wrap_content"
                 android:layout_height="45dp"
                 android:layout_gravity="right|center"
                 android:src="@drawable/send"
 
-                app:fabSize="normal"
+                android:text="发送"
+
+
 
                 >
 
-            </android.support.design.widget.FloatingActionButton>
+            </Button>
 
         </LinearLayout>
 

@@ -6,9 +6,11 @@ import android.graphics.drawable.ColorDrawable;
 import android.view.LayoutInflater;
 import android.view.View;
 
+import com.suiyue.hexiangpeng.suiyue.R;
+
 import me.imid.swipebacklayout.lib.SwipeBackLayout;
 import me.imid.swipebacklayout.lib.Utils;
-import poem.stefory.com.myapplication.R;
+
 
 /**
  * @author Yrom
@@ -28,6 +30,7 @@ public class SwipeBackActivityHelper {
         mActivity.getWindow().getDecorView().setBackgroundDrawable(null);
         mSwipeBackLayout = (SwipeBackLayout) LayoutInflater.from(mActivity).inflate(
                 R.layout.swipeback_layout, null);
+
         mSwipeBackLayout.addSwipeListener(new SwipeBackLayout.SwipeListener() {
             @Override
             public void onScrollStateChange(int state, float scrollPercent) {
