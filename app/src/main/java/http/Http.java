@@ -10,6 +10,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.net.URLEncoder;
 
 /**
  * Created by hexiangpeng on 15/5/17.
@@ -51,7 +52,7 @@ public class Http {
             }
 
         }
-        System.out.println(result);
+//        System.out.println(result);
         return result;
     }
 
@@ -98,9 +99,12 @@ public class Http {
 
     //注册新用户
 
-    public  String  addUser(String idcode,String passwd,String name,String persontext,String photo){
+    public  String  addUser(String idcode,String passwd,String name,String persontext,String photo) throws Exception{
 
-        String ur="http://suiyue520.sinaapp.com/registe?idcode="+idcode+"&passwd="+passwd+"&name="+name+"&persontext="+persontext;
+       String nam= URLEncoder.encode(name,"UTF-8");
+        String per= URLEncoder.encode(persontext,"UTF-8");
+
+        String ur="http://suiyue520.sinaapp.com/registe?idcode="+idcode+"&passwd="+passwd+"&name="+nam+"&persontext="+per;
         String re = sendHttp(ur);
 
 //        Log.e("re",re);
@@ -123,9 +127,10 @@ public class Http {
 //    http://suiyue520.sinaapp.com/addmessage?idcode=908&msgtext=我是908&location=日本
 
 //    发表动态
-    public  String  newMessage(String idcode,String msgText,String location){
+    public  String  newMessage(String idcode,String msgText,String location) throws Exception{
 
-        String ur="http://suiyue520.sinaapp.com/addmessage?idcode="+idcode+"&msgtext="+msgText+"&location="+location;
+        String msg= URLEncoder.encode(msgText,"UTF-8");
+        String ur="http://suiyue520.sinaapp.com/addmessage?idcode="+idcode+"&msgtext="+msg+"&location="+location;
         String re=sendHttp(ur);
 
         return re;

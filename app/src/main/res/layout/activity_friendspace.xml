@@ -54,13 +54,13 @@
         android:id="@+id/img_newmess"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:tint="@android:color/white"
+        android:tint="@color/white"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
         android:layout_marginRight="30dp"
         android:layout_marginBottom="40dp"
-        android:background="@drawable/rip"
-        android:src="@drawable/edit"
+
+        android:background="@drawable/edit"
         android:padding="6dp"
 
 

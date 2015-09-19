@@ -33,6 +33,8 @@ import cn.smssdk.SMSSDK;
 public class GetVerficationCodeFragment extends Fragment {
     private View view;
 
+    private boolean isclick=true;
+
     private boolean ischeck = false;
 
     private Context context;
@@ -62,9 +64,10 @@ public class GetVerficationCodeFragment extends Fragment {
 
 
             if (result == SMSSDK.RESULT_COMPLETE) {
-                //短信注册成功后，返回MainActivity,然后提示新好友
+                //短信注册成功后，返回MainActivity,然后提
                 if (event == SMSSDK.EVENT_SUBMIT_VERIFICATION_CODE) {//提交验证码成功
 
+                    isclick=false;
                     FragmentManager fm = getFragmentManager();
 
 
@@ -96,6 +99,7 @@ public class GetVerficationCodeFragment extends Fragment {
             } else {
                 ((Throwable) data).printStackTrace();
 
+                isclick=true;
                 ischeck = false;
 
              //   Toast.makeText(context, "验证码错误", Toast.LENGTH_SHORT).show();
@@ -158,8 +162,10 @@ public class GetVerficationCodeFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 if (code.getText().toString().length() == 4) {
+                    if (isclick) {
 
-                    SMSSDK.submitVerificationCode("86", phonenumber.getText().toString(), code.getText().toString());
+                        SMSSDK.submitVerificationCode("86", phonenumber.getText().toString(), code.getText().toString());
+                    }
 
                 } else {
                     Toast.makeText(context, "验证码输入错误", Toast.LENGTH_SHORT).show();

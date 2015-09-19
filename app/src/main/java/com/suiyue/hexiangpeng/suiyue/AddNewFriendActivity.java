@@ -31,6 +31,7 @@ import android.widget.Toast;
 import com.easemob.chat.EMContactManager;
 
 import adapter.AddNewFriendAdapter;
+import dbutil.StaticData;
 import http.FriendList;
 import http.Http;
 import http.ParserJson;
@@ -220,6 +221,7 @@ public class AddNewFriendActivity extends Activity  {
                     new Thread(new Runnable() {
                         @Override
                         public void run() {
+
                             String re=http.searchFriend(editTextSearch.getText().toString());
                            friendList = parserJson.parserFriendData(re);
                             Log.e("搜索结果",re);
@@ -261,31 +263,35 @@ public class AddNewFriendActivity extends Activity  {
 
                     final String name=userinfo.getString("name","");
 
-                    new Thread(new Runnable() {
-                        @Override
-                        public void run() {
+                    if (!StaticData.userInfo.idcode.contains(friendList.idcode.get(indexofIdcode).toString())) {
 
-                            try{
-                                String re=http.addfriend(name,friendList.idcode.get(indexofIdcode).toString());
-                                String re1=http.addfriend(friendList.idcode.get(indexofIdcode).toString(),name);
-                                EMContactManager.getInstance().addContact(friendList.idcode.get(indexofIdcode).toString(), "通过账号查找");//需异步处理
+                        new Thread(new Runnable() {
+                            @Override
+                            public void run() {
 
-                                Log.d("好友申请","好友请求申请");
+                                try {
+                                    String re = http.addfriend(name, friendList.idcode.get(indexofIdcode).toString());
+                                    String re1 = http.addfriend(friendList.idcode.get(indexofIdcode).toString(), name);
+                                    EMContactManager.getInstance().addContact(friendList.idcode.get(indexofIdcode).toString(), "通过账号查找");//需异步处理
 
-                                if (re=="suc") {
-                                    Message msg = new Message();
-                                    msg.what = 10;
-                                    myHandler.sendMessage(msg);
+                                    Log.d("好友申请", "好友请求申请");
+
+                                    if (re == "suc") {
+                                        Message msg = new Message();
+                                        msg.what = 10;
+                                        myHandler.sendMessage(msg);
+                                    }
+
+
+                                } catch (Exception e) {
+
                                 }
 
-
-
-                            }catch (Exception e){
-
                             }
-
-                        }
-                    }).start();
+                        }).start();
+                    }else{
+                        Toast.makeText(AddNewFriendActivity.this,"已经是你的好友",Toast.LENGTH_SHORT).show();
+                    }
                     break;
                 case R.id.btn_cancel:
                     break;

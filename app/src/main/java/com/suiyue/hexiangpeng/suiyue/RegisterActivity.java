@@ -39,12 +39,10 @@ public class RegisterActivity extends Activity {
     private EditText username;
 
 
-
-
     private String idcde;
     private String pa;
 
-    private String[] persontext={"世界上最好的感觉就是知道有人在想你。","梦里不知身是客，醒来却道如南柯。","寂寞是下在我魂里的咒，无药可救。","如果我是太阳你会不会期待天亮"};
+    private String[] persontext = {"世界上最好的感觉就是知道有人在想你。", "梦里不知身是客，醒来却道如南柯。", "寂寞是下在我魂里的咒，无药可救。", "如果我是太阳你会不会期待天亮"};
 
     private Button register;
 
@@ -53,12 +51,11 @@ public class RegisterActivity extends Activity {
     private ImageView back;
 
 
-
-   Handler myHandler = new Handler() {
+    Handler myHandler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
-            switch (msg.what){
+            switch (msg.what) {
 
                 case 2:
 //                    Toast.makeText(RegisterActivity.this,"注册失败",Toast.LENGTH_SHORT).show();
@@ -68,7 +65,7 @@ public class RegisterActivity extends Activity {
                     dialog.cancel();
                     dialog.dismiss();
 
-                    EMChatManager.getInstance().login(idcde,pa,new EMCallBack() {//回调
+                    EMChatManager.getInstance().login(idcde, pa, new EMCallBack() {//回调
                         @Override
                         public void onSuccess() {
                             runOnUiThread(new Runnable() {
@@ -78,17 +75,13 @@ public class RegisterActivity extends Activity {
                                     EMGroupManager.getInstance().loadAllGroups();
                                     EMChatManager.getInstance().loadAllConversations();
 
-                                    SharedPreferences userinfo=getSharedPreferences("userinfo",0);
-                                    userinfo.edit().putString("name",idcde).commit();
-                                    userinfo.edit().putString("pass",pa).commit();
-                                    Intent mainactivity=new Intent(RegisterActivity.this,MianHome.class);
-
-
-
+                                    SharedPreferences userinfo = getSharedPreferences("userinfo", 0);
+                                    userinfo.edit().putString("name", idcde).commit();
+                                    userinfo.edit().putString("pass", pa).commit();
+                                    Intent mainactivity = new Intent(RegisterActivity.this, MianHome.class);
 
 
                                     startActivity(mainactivity);
-
 
 
                                 }
@@ -115,15 +108,12 @@ public class RegisterActivity extends Activity {
     };
 
 
-
-
-
     @Override
     protected void onDestroy() {
         // TODO Auto-generated method stub
-        try{
+        try {
             dialog.dismiss();
-        }catch (Exception e) {
+        } catch (Exception e) {
             System.out.println("myDialog取消，失败！");
             // TODO: handle exception
         }
@@ -132,35 +122,24 @@ public class RegisterActivity extends Activity {
     }
 
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
 
-        useridecode=(EditText)findViewById(R.id.edit_regusername);
-        userpasswd=(EditText)findViewById(R.id.edit_regpasswd);
-        username=(EditText)findViewById(R.id.edit_name);
+        useridecode = (EditText) findViewById(R.id.edit_regusername);
+        userpasswd = (EditText) findViewById(R.id.edit_regpasswd);
+        username = (EditText) findViewById(R.id.edit_name);
 
-        register=(Button) findViewById(R.id.btn_reg);
-        back=(ImageView) findViewById(R.id.register_back);
-
-
-
-
-
-
-
-
-
+        register = (Button) findViewById(R.id.btn_reg);
+        back = (ImageView) findViewById(R.id.register_back);
 
 
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent login=new Intent(RegisterActivity.this,LoginActivity.class);
+                Intent login = new Intent(RegisterActivity.this, LoginActivity.class);
                 startActivity(login);
                 overridePendingTransition(0, R.anim.base_slide_right_out);
             }
@@ -169,31 +148,26 @@ public class RegisterActivity extends Activity {
 
         SIMCardInfo siminfo = new SIMCardInfo(RegisterActivity.this);
 
-       // Log.e("电话",siminfo.getProvidersName());
+        // Log.e("电话",siminfo.getProvidersName());
 
-       // useridecode.setText(siminfo.getNativePhoneNumber().toString());
-
-
-
-
-
+        // useridecode.setText(siminfo.getNativePhoneNumber().toString());
 
 
         register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                final String idcode=useridecode.getText().toString().trim();
-                final String pass=userpasswd.getText().toString().trim();
-                final String name=username.getText().toString().trim();
+                final String idcode = useridecode.getText().toString().trim();
+                final String pass = userpasswd.getText().toString().trim();
+                final String name = username.getText().toString().trim();
 
-                idcde=idcode;
-                pa=pass;
+                idcde = idcode;
+                pa = pass;
 
-                if (idcode.isEmpty()||pass.isEmpty()||name.isEmpty()){
-                    Toast.makeText(RegisterActivity.this,"请输入完整信息",Toast.LENGTH_SHORT).show();
-                }else{
+                if (idcode.isEmpty() || pass.isEmpty() || name.isEmpty()) {
+                    Toast.makeText(RegisterActivity.this, "请输入完整信息", Toast.LENGTH_SHORT).show();
+                } else {
 
-                    dialog = new Dialog(RegisterActivity.this,R.style.mydialogstyle);
+                    dialog = new Dialog(RegisterActivity.this, R.style.mydialogstyle);
                     dialog.setContentView(R.layout.progresslayout);//此处布局为一个progressbar
                     dialog.setCancelable(true); // 可以取消
                     dialog.show();
@@ -202,37 +176,37 @@ public class RegisterActivity extends Activity {
                         @Override
                         public void run() {
 
-                            Http http=new Http();
+                            Http http = new Http();
 
                             try {
                                 EMChatManager.getInstance().createAccountOnServer(idcode, pass);
-                            }catch (Exception e){
+
+
+                                Random random1 = new Random(persontext.length);
+
+                                System.out.println(random1.nextInt());
+                                http.addUser(idcode, pass, name, persontext[random1.nextInt() % persontext.length], "");
+
+                                String re = http.addfriend(idcode, idcode);
+
+
+                                Log.e("注册", re);
+
+                                ///
+                                Message message = new Message();
+
+
+                                if (re == "suc") {
+                                    message.what = 1;
+                                    myHandler.sendMessage(message);
+                                } else {
+                                    message.what = 2;
+                                    myHandler.sendMessage(message);
+                                }
+
+                            } catch (Exception e) {
                                 System.out.println(e);
                             }
-
-                            Random random1 = new Random(persontext.length);
-
-                            System.out.println(random1.nextInt());
-                            http.addUser(idcode,pass,name,persontext[random1.nextInt()%persontext.length],"");
-
-                            String re=http.addfriend(idcode,idcode);
-
-
-                            Log.e("注册",re);
-
-                            ///
-                            Message message = new Message();
-
-
-                            if(re=="suc"){
-                                message.what =1;
-                                myHandler.sendMessage(message);
-                            }else{
-                                message.what=2;
-                                myHandler.sendMessage(message);
-                            }
-
-
 
 
                         }
@@ -247,7 +221,6 @@ public class RegisterActivity extends Activity {
         });
 
 
-
     }
 
 
@@ -255,7 +228,7 @@ public class RegisterActivity extends Activity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        Intent login=new Intent(RegisterActivity.this,LoginActivity.class);
+        Intent login = new Intent(RegisterActivity.this, LoginActivity.class);
         startActivity(login);
         overridePendingTransition(0, R.anim.base_slide_right_out);
     }

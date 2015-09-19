@@ -346,7 +346,7 @@ public class MessageListActivity extends Activity {
             final boolean isResponse = intent.getBooleanExtra("isResponse", false);
             //消息发送方username
             final String from = intent.getStringExtra("username");
-            Log.d("好友请求", from + "请求加你为好友,reason: " + reason);
+//            Log.d("好友请求", from + "请求加你为好友,reason: " + reason);
 
             //sdk暂时只提供同意好友请求方法，不同意选项可以参考微信增加一个忽略按钮。
             if (!isResponse) {
@@ -363,9 +363,9 @@ public class MessageListActivity extends Activity {
 //
 //               notification.flags |= Notification.FLAG_AUTO_CANCEL; // FLAG_AUTO_CANCEL表明当通知被用户点击时，通知将被清除。
 //               manager.notify(1, notification);// 步
-                Log.d("好友", from + "请求加你为好友,reason: " + reason);
+//                Log.d("好友", from + "请求加你为好友,reason: " + reason);
             } else {
-                Log.d("好友", from + "同意了你的好友请求");
+//                Log.d("好友", from + "同意了你的好友请求");
             }
             //具体ui上的处理参考chatuidemo。
         }
@@ -375,48 +375,54 @@ public class MessageListActivity extends Activity {
     private class NewMessageBroadcastReciver extends BroadcastReceiver {
         @Override
         public void onReceive(Context context, Intent intent) {
-            String msgId = intent.getStringExtra("msgid");
-            //发消息的人的username(userid)
-            String msgFrom = intent.getStringExtra("from");
-            //消息类型，文本，图片，语音消息等,这里返回的值为msg.type.ordinal()。
 
-            int msgType = intent.getIntExtra("type", 0);
+            try {
+                String msgId = intent.getStringExtra("msgid");
+                //发消息的人的username(userid)
+                String msgFrom = intent.getStringExtra("from");
+                //消息类型，文本，图片，语音消息等,这里返回的值为msg.type.ordinal()。
 
-            //所以消息type实际为是enum类型
-            if (msgType != 3) {
-                //  users.add(msgFrom);
+                int msgType = intent.getIntExtra("type", 0);
+
+                //所以消息type实际为是enum类型
+                if (msgType != 3) {
+                    //  users.add(msgFrom);
 
 
-                EMConversation conversation = EMChatManager.getInstance().getConversation(msgFrom);
-                EMMessage lastMessage = conversation.getLastMessage();
+                    EMConversation conversation = EMChatManager.getInstance().getConversation(msgFrom);
+                    EMMessage lastMessage = conversation.getLastMessage();
 
-                TextMessageBody txtBody = (TextMessageBody) lastMessage.getBody();
-                //取出消息
+                    TextMessageBody txtBody = (TextMessageBody) lastMessage.getBody();
+                    //取出消息
 
 
 //                通过发送人的信息，获取图片地址
 
 
-                for (int i = 0; i < StaticData.userInfo.idcode.size(); i++) {
-                    if (msgFrom == StaticData.userInfo.idcode.get(i).toString()) {
-                        insert(msgFrom, "", txtBody.getMessage().toString(), conversation.getUnreadMsgCount(),
-                                StaticData.userInfo.photo.get(i).toString());
-                        Log.e("插入数据", "插入信息");
+                    for (int i = 0; i < StaticData.userInfo.idcode.size(); i++) {
+                        if (msgFrom == StaticData.userInfo.idcode.get(i).toString()) {
+                            insert(msgFrom, "", txtBody.getMessage().toString(), conversation.getUnreadMsgCount(),
+                                    StaticData.userInfo.photo.get(i).toString());
+//                        Log.e("插入数据", "插入信息");
+
+                        }
 
                     }
 
+
+                    //获取新消息后插入数据库中
+
                 }
+                adapter.refresh();
+                //adapter.notifyDataSetChanged();
 
+//            Log.e("main", "new message id:" + msgId + " from:" + msgFrom + " type:" + msgType);
+                //更方便的方法是通过msgId直接获取整个message
+                EMMessage message = EMChatManager.getInstance().getMessage(msgId);
 
-                //获取新消息后插入数据库中
-
+            }catch (Exception e){
+                System.out.println(e);
             }
-            adapter.refresh();
-            //adapter.notifyDataSetChanged();
-
-            Log.e("main", "new message id:" + msgId + " from:" + msgFrom + " type:" + msgType);
-            //更方便的方法是通过msgId直接获取整个message
-            EMMessage message = EMChatManager.getInstance().getMessage(msgId);
         }
     }
 }

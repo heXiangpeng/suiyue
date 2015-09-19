@@ -46,44 +46,43 @@ public class UploadInfo extends Fragment {
     private LinearLayout registerbutton;
 
 
+    Handler myhandler = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            switch (msg.what) {
+                case 3:
 
-     Handler myhandler=new Handler(){
-         @Override
-         public void handleMessage(Message msg) {
-             super.handleMessage(msg);
-             switch (msg.what){
-                 case 3:
+                    System.out.println("接收");
+                    dialog.cancel();
+                    dialog.dismiss();
+                    EMChatManager.getInstance().login(phoneNumber, pass.getText().toString(), new EMCallBack() {
+                        @Override
+                        public void onSuccess() {
 
-                     System.out.println("接收");
-                     dialog.cancel();
-                     dialog.dismiss();
-                     EMChatManager.getInstance().login(phoneNumber, pass.getText().toString(), new EMCallBack() {
-                         @Override
-                         public void onSuccess() {
-
-                             tast ta = new tast();
-                             ta.execute();
+                            tast ta = new tast();
+                            ta.execute();
 
 
-                         }
+                        }
 
-                         @Override
-                         public void onError(int i, String s) {
+                        @Override
+                        public void onError(int i, String s) {
 
-                         }
+                        }
 
-                         @Override
-                         public void onProgress(int i, String s) {
+                        @Override
+                        public void onProgress(int i, String s) {
 
-                         }
-                     });
+                        }
+                    });
 
-                     break;
-                 default:
-                     break;
-             }
-         }
-     };
+                    break;
+                default:
+                    break;
+            }
+        }
+    };
 
 
     @Nullable
@@ -127,36 +126,38 @@ public class UploadInfo extends Fragment {
 
                             try {
                                 EMChatManager.getInstance().createAccountOnServer(phoneNumber, pass.getText().toString());
+
+
+                                Random random1 = new Random(persontext.length);
+
+                                System.out.println(random1.nextInt());
+                                http.addUser(phoneNumber, pass.getText().toString(), name.getText().toString(), persontext[random1.nextInt() % persontext.length], "");
+
+                                String re1 = http.addfriend(phoneNumber, phoneNumber);
+
+
+                                Log.e("注册", re1);
+
+                                System.out.println("获取电话" + phoneNumber);
+
+                                ///
+                                Message message = new Message();
+
+
+                                if (re1.contains("suc")) {
+
+
+                                    message.what = 3;
+                                    myhandler.sendMessage(message);
+                                } else {
+
+
+                                    message.what = 2;
+                                    myhandler.sendMessage(message);
+                                }
+
                             } catch (Exception e) {
                                 System.out.println(e);
-                            }
-
-                            Random random1 = new Random(persontext.length);
-
-                            System.out.println(random1.nextInt());
-                            http.addUser(phoneNumber, pass.getText().toString(), name.getText().toString(), persontext[random1.nextInt() % persontext.length], "");
-
-                            String re1 = http.addfriend(phoneNumber, phoneNumber);
-
-
-                            Log.e("注册", re1);
-
-                            System.out.println("获取电话" + phoneNumber);
-
-                            ///
-                            Message message = new Message();
-
-
-                            if (re1.contains("suc")) {
-
-
-                                message.what = 3;
-                                myhandler.sendMessage(message);
-                            } else {
-
-
-                                message.what = 2;
-                                myhandler.sendMessage(message);
                             }
 
 

@@ -237,10 +237,14 @@ public class FriendListActivity extends Activity {
 
         String bestProvider = lm.getBestProvider(getCriteria(), true);
 
+
         location = lm.getLastKnownLocation(bestProvider);
 
+        if (location!=null) {
 
-        updateView(location);
+            updateView(location);
+
+        }
 
 
 //            lm.addGpsStatusListener(listener);
@@ -291,7 +295,7 @@ public class FriendListActivity extends Activity {
                     for (int i = 0; i < username.location.size(); i++) {
                         String dis = username.location.get(i);
 
-                        String distance;
+                        String distance="0";
 
                         if (!dis.isEmpty()) {
                             String di[] = dis.split(":");
@@ -303,7 +307,9 @@ public class FriendListActivity extends Activity {
                                 distance = ComputeDistance.GetDistance(latitude, longitude, Double.valueOf(di[0]).doubleValue(), Double.valueOf(di[1]).doubleValue());
 
                                 Log.e("ad12", longitude + "");
-                            } else {
+                            }
+
+                            if(!selfdis[0].isEmpty()){
                                 Log.e("addd", selfdis[0]);
 
                                 distance = ComputeDistance.GetDistance(Double.valueOf(selfdis[0]).doubleValue(), Double.valueOf(selfdis[1]).doubleValue(), Double.valueOf(di[0]).doubleValue(), Double.valueOf(di[1]).doubleValue());

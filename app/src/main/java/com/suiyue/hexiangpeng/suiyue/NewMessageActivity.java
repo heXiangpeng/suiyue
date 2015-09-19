@@ -112,7 +112,13 @@ public class NewMessageActivity extends Activity {
             @Override
             public void run() {
 
-                http.newMessage(id,msg,location);
+                try {
+                    http.newMessage(id,msg,location);
+
+                }catch (Exception e){
+                    System.out.println();
+                }
+
 
 
             }
