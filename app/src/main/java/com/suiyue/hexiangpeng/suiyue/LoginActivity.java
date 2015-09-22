@@ -68,7 +68,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
           super.handleMessage(msg);
           switch (msg.what){
               case 2:
-//                  dialog.cancel();
+                  dialog.cancel();
                   Intent mainactivity=new Intent(LoginActivity.this,MianHome.class);
                   startActivity(mainactivity);
                   break;

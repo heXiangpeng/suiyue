@@ -179,21 +179,25 @@ public class GetVerficationCodeFragment extends Fragment {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
-                if (phonenumber.getText().length() > 10) {
-                    getcode.setTextColor(context.getResources().getColor(R.color.green));
-                } else {
-                    getcode.setTextColor(context.getResources().getColor(R.color.grey));
-                }
+
+
+
+
+
             }
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
 
+                getcode.setTextColor(context.getResources().getColor(R.color.green));
             }
 
             @Override
             public void afterTextChanged(Editable s) {
+                if (phonenumber.getText().length()<10){
+                    getcode.setTextColor(context.getResources().getColor(R.color.grey));
 
+                }
 
             }
         });

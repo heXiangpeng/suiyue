@@ -54,8 +54,7 @@ public class UploadInfo extends Fragment {
                 case 3:
 
                     System.out.println("接收");
-                    dialog.cancel();
-                    dialog.dismiss();
+
                     EMChatManager.getInstance().login(phoneNumber, pass.getText().toString(), new EMCallBack() {
                         @Override
                         public void onSuccess() {
@@ -194,6 +193,9 @@ public class UploadInfo extends Fragment {
             userinfo.edit().putString("realname", userInfo.name.get(0).toString()).commit();
             userinfo.edit().putString("photo", userInfo.photo.get(0).toString()).commit();
             userinfo.edit().putString("location", userInfo.location.get(0).toString()).commit();
+
+            dialog.cancel();
+            dialog.dismiss();
 
             Intent mainactivity = new Intent(context, MianHome.class);
 
