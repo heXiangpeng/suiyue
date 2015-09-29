@@ -24,12 +24,14 @@
 
 
             <TextView
+                android:paddingBottom="10dp"
                 android:paddingRight="10dp"
                 android:paddingLeft="10dp"
+                android:paddingTop="10dp"
                 android:id="@+id/chatfrom_content"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@drawable/ta"
+                android:background="@drawable/shaptextrecive"
                 android:layout_margin="10dp"
                 android:gravity="center_vertical"
                 android:textColor="#1D1D26"
@@ -50,11 +52,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
 
+                android:paddingBottom="10dp"
                 android:paddingRight="10dp"
                 android:paddingLeft="10dp"
+                android:paddingTop="10dp"
                 android:layout_margin="10dp"
-                android:background="@drawable/tb"
-                android:gravity="center_vertical"
+                android:background="@drawable/shaptext"
+
+
                 android:textColor="#1D1D26"
                 android:textSize="14sp" />
         </RelativeLayout>

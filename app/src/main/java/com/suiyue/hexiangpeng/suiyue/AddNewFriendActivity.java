@@ -35,6 +35,7 @@ import dbutil.StaticData;
 import http.FriendList;
 import http.Http;
 import http.ParserJson;
+import http.UserInfo;
 import navgationbar.SystemBarTintManager;
 
 
@@ -132,6 +133,9 @@ public class AddNewFriendActivity extends Activity  {
 
 
 
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -144,6 +148,8 @@ public class AddNewFriendActivity extends Activity  {
         editTextSearch=(EditText) findViewById(R.id.search_et_input);
 
         clearText=(ImageView)findViewById(R.id.search_iv_delete);
+
+        Log.e("好友个数",StaticData.userInfo.idcode.size()+"");
 
 
         http = new Http();
@@ -225,6 +231,7 @@ public class AddNewFriendActivity extends Activity  {
                             String re=http.searchFriend(editTextSearch.getText().toString());
                            friendList = parserJson.parserFriendData(re);
                             Log.e("搜索结果",re);
+//                            friendList =clearFriend(friendList,StaticData.userInfo);
                             Message msg=new Message();
                             msg.what=1;
                             myHandler.sendMessage(msg);

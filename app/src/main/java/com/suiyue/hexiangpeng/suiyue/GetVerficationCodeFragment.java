@@ -24,6 +24,9 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.Timer;
+import java.util.TimerTask;
+
 import cn.smssdk.EventHandler;
 import cn.smssdk.SMSSDK;
 
@@ -32,6 +35,9 @@ import cn.smssdk.SMSSDK;
  */
 public class GetVerficationCodeFragment extends Fragment {
     private View view;
+
+
+    private boolean isclickgetcode=true;
 
     private boolean isclick=true;
 
@@ -50,6 +56,20 @@ public class GetVerficationCodeFragment extends Fragment {
 
     private TextView getcode;
     private LinearLayout vercode; //校验验证码
+
+    Handler time=new Handler(){
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            if (msg.what>0){
+                getcode.setText(msg.what+"秒后重新获取");
+            }else {
+                getcode.setText("获取验证码");
+                isclickgetcode=true;
+            }
+        }
+    };
+
 
     Handler handler = new Handler() {
 
@@ -89,6 +109,20 @@ public class GetVerficationCodeFragment extends Fragment {
                     ischeck = true;
 
                 } else if (event == SMSSDK.EVENT_GET_VERIFICATION_CODE) {
+
+                    Timer timer=new Timer();
+
+                    timer.schedule(new TimerTask() {
+                        int i=30;
+                        @Override
+                        public void run() {
+                            Message msg = new Message();
+                            msg.what = i--;
+                            time.sendMessage(msg);
+
+                        }
+                    },1000,200);
+
                     Toast.makeText(context, "验证码已经发送", Toast.LENGTH_SHORT).show();
 //                    textView2.setText("验证码已经发送");
                 } else if (event == SMSSDK.EVENT_GET_SUPPORTED_COUNTRIES) {//返回支持发送验证码的国家列表
@@ -97,7 +131,7 @@ public class GetVerficationCodeFragment extends Fragment {
 
                 }
             } else {
-                ((Throwable) data).printStackTrace();
+              //  ((Throwable) data).printStackTrace(); // 回调获取验证码
 
                 isclick=true;
                 ischeck = false;
@@ -206,7 +240,12 @@ public class GetVerficationCodeFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 if (phonenumber.getText().toString().length() >10) {
-                    SMSSDK.getVerificationCode("86", phonenumber.getText().toString());
+
+                    if (isclickgetcode) {
+                        SMSSDK.getVerificationCode("86", phonenumber.getText().toString());
+                    }
+
+
                 } else {
                     Toast.makeText(context, "电话号码有误", Toast.LENGTH_SHORT).show();
 

@@ -72,7 +72,7 @@
                             android:layout_width="@dimen/activity_toolbar_size"
                             android:layout_height="@dimen/activity_toolbar_size"
                             android:layout_gravity="center_horizontal"
-                           android:background="@drawable/mes"
+                           android:background="@drawable/mess"
 
                              />
 
@@ -102,7 +102,7 @@
                             android:layout_width="@dimen/activity_toolbar_size"
                             android:layout_height="@dimen/activity_toolbar_size"
                             android:layout_gravity="center_horizontal"
-                           android:background="@drawable/us" />
+                           android:background="@drawable/friendlist" />
 
                         <TextView
                             android:layout_width="wrap_content"

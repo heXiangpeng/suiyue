@@ -62,7 +62,7 @@ public class ContactActivity extends SwipeBackActivity implements View.OnClickLi
     private TextView name;
 
     private EditText textMessage;
-    private Button sendbutton;
+    private FloatingActionButton sendbutton;
 
    
 
@@ -388,7 +388,7 @@ public class ContactActivity extends SwipeBackActivity implements View.OnClickLi
         textMessage = (EditText) findViewById(R.id.text_message);
 
 
-        sendbutton = (Button) findViewById(R.id.contact_send);
+        sendbutton = (FloatingActionButton) findViewById(R.id.contact_send);
         listmessage = (ListView) findViewById(R.id.list_contact);
 
         back = (ImageView) findViewById(R.id.contact_back);

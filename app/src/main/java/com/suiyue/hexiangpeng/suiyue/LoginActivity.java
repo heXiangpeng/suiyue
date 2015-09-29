@@ -79,6 +79,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
                   Toast.makeText(LoginActivity.this,"用户名或密码有误",Toast.LENGTH_SHORT).show();
                   break;
+              case 4:
+                  Toast.makeText(LoginActivity.this,"登录错误,用户名或密码有误",Toast.LENGTH_SHORT).show();
+                  break;
               default:
                   break;
           }
@@ -235,17 +238,22 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
 
 
-                Log.d("main",name);
-                SharedPreferences userinfo=getSharedPreferences("userinfo",0);
-                userinfo.edit().putString("name",name).commit();
-                userinfo.edit().putString("pass",passwd).commit();
-                userinfo.edit().putString("realname",userInf.name.get(0)).commit();
-                userinfo.edit().putString("photo",userInf.photo.get(0)).commit();
-                userinfo.edit().putString("location",userInf.location.get(0)).commit();
+                if(userInf.name.size()>0) {
+                    SharedPreferences userinfo = getSharedPreferences("userinfo", 0);
+                    userinfo.edit().putString("name", name).commit();
+                    userinfo.edit().putString("pass", passwd).commit();
+                    userinfo.edit().putString("realname", userInf.name.get(0)).commit();
+                    userinfo.edit().putString("photo", userInf.photo.get(0)).commit();
+                    userinfo.edit().putString("location", userInf.location.get(0)).commit();
 
-                Message message = new Message();
-                message.what =2;
-                myhandler.sendMessage(message);
+                    Message message = new Message();
+                    message.what = 2;
+                    myhandler.sendMessage(message);
+                }else {
+                    Message message = new Message();
+                    message.what = 4;
+                    myhandler.sendMessage(message);
+                }
 
 //                RoundedBitmapDrawable aa= RoundedBitmapDrawableFactory.create(getResources(),r);
 //                aa.setCornerRadius(100);
