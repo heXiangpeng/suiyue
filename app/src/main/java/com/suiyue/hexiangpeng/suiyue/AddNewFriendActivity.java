@@ -109,6 +109,9 @@ public class AddNewFriendActivity extends Activity  {
                     lv.setAdapter(addNewFriendAdapter);
                     addNewFriendAdapter.notifyDataSetChanged();
                     break;
+                case 2:
+                    Toast.makeText(AddNewFriendActivity.this,"好友查找失败！",Toast.LENGTH_SHORT).show();
+                    break;
 
                 case 10:
 
@@ -230,11 +233,17 @@ public class AddNewFriendActivity extends Activity  {
 
                             String re=http.searchFriend(editTextSearch.getText().toString());
                            friendList = parserJson.parserFriendData(re);
-                            Log.e("搜索结果",re);
+                            if(friendList.idcode.size()!=0) {
+//                            Log.e("搜索结果",re);
 //                            friendList =clearFriend(friendList,StaticData.userInfo);
-                            Message msg=new Message();
-                            msg.what=1;
-                            myHandler.sendMessage(msg);
+                                Message msg = new Message();
+                                msg.what = 1;
+                                myHandler.sendMessage(msg);
+                            }else{
+                                Message msg = new Message();
+                                msg.what = 2;
+                                myHandler.sendMessage(msg);
+                            }
                         }
                     }).start();
 
