@@ -6,8 +6,8 @@
 
 
 
-   <color name="tabarnormal">#E0E0E0</color>
-    <color name="tabarselect">#C6C6C6</color>
+   <color name="tabarnormal">#fff</color>
+    <color name="tabarselect">#eff6fffa</color>
 
     <color name="btn_press_color">#5677fc</color>
     <color name="btn_pressed_color">#3ca0ec</color>

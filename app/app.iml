@@ -85,20 +85,19 @@
     </content>
     <orderEntry type="jdk" jdkName="Android API 21 Platform" jdkType="Android SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" exported="" name="analytics-5.5.3" level="project" />
-    <orderEntry type="library" exported="" name="design-22.2.0" level="project" />
-    <orderEntry type="library" exported="" name="AMap_ Location_v1.4.0.1_20150910" level="project" />
-    <orderEntry type="library" exported="" name="recyclerview-v7-22.2.1" level="project" />
-    <orderEntry type="library" exported="" name="SMSSDK-1.1.5" level="project" />
-    <orderEntry type="library" exported="" name="cardview-v7-22.2.1" level="project" />
-    <orderEntry type="library" exported="" name="support-annotations-22.2.1" level="project" />
-    <orderEntry type="library" exported="" name="umeng-analytics-v5.5.3" level="project" />
+    <orderEntry type="library" exported="" name="easemobchat_2.2.0" level="project" />
     <orderEntry type="library" exported="" name="zxingcore" level="project" />
     <orderEntry type="library" exported="" name="support-v4-22.2.1" level="project" />
+    <orderEntry type="library" exported="" name="recyclerview-v7-22.2.1" level="project" />
+    <orderEntry type="library" exported="" name="support-annotations-22.2.1" level="project" />
+    <orderEntry type="library" exported="" name="bugly_1.2.3.8__release" level="project" />
     <orderEntry type="library" exported="" name="universal-image-loader-1.9.4" level="project" />
     <orderEntry type="library" exported="" name="appcompat-v7-22.2.0" level="project" />
-    <orderEntry type="library" exported="" name="bugly_1.2.3.8__release" level="project" />
-    <orderEntry type="library" exported="" name="easemobchat_2.2.0" level="project" />
+    <orderEntry type="library" exported="" name="SMSSDK-1.1.5" level="project" />
+    <orderEntry type="library" exported="" name="umeng-analytics-v5.5.3" level="project" />
+    <orderEntry type="library" exported="" name="AMap_ Location_v1.4.0.1_20150910" level="project" />
+    <orderEntry type="library" exported="" name="design-22.2.0" level="project" />
+    <orderEntry type="library" exported="" name="cardview-v7-22.2.1" level="project" />
   </component>
 </module>
 

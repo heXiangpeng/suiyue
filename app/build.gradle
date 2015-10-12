@@ -39,12 +39,7 @@ dependencies {
     //    compile files('libs/Android_Location_V1.3.2.jar')
     //    compile files('libs/AMap_3DMap_V2.4.0.jar')
     //    compile files('libs/android-support-design.jar')
-    compile files('libs/universal-image-loader-1.9.4.jar')
-    compile files('libs/zxingcore.jar')
-    compile files('libs/easemobchat_2.2.0.jar')
 
-    compile files('libs/SMSSDK-1.1.5.jar')
-    compile 'com.umeng.analytics:analytics:latest.integration'
 
 }
 
