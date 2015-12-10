@@ -120,6 +120,8 @@
                 android:layout_width="30dp"
                 android:layout_height="30dp"
 
+                android:id="@+id/imgbtn_emoij"
+
                 android:background="@drawable/emoij"
                 />
 
@@ -164,6 +166,17 @@
             />
 
  </LinearLayout>
+
+ <GridView
+     android:id="@+id/emoijview"
+     android:layout_width="match_parent"
+     android:layout_height="wrap_content"
+     android:numColumns="3"
+     android:visibility="gone"
+     >
+
+
+     </GridView>
 
 
 </LinearLayout>

@@ -2,6 +2,7 @@ package adapter;
 
 import android.animation.ObjectAnimator;
 import android.content.Context;
+import android.text.Html;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -98,10 +99,10 @@ public class ContactListAdapter extends BaseAdapter {
 
 
                 TextMessageBody txtBody = (TextMessageBody) messages.get(position).getBody();
-                Log.e("消息数：",""+messages.size());
+
                 if (txtBody.getMessage().length()>0) {
 
-               textViewRecive.setText(txtBody.getMessage());
+               textViewRecive.setText(Html.fromHtml(txtBody.getMessage()));
 
                 }
             }
@@ -120,11 +121,12 @@ public class ContactListAdapter extends BaseAdapter {
 
 
                 TextMessageBody txtBody = (TextMessageBody) messages.get(position).getBody();
-                Log.e("消息数：",""+messages.size());
+
                 if (txtBody.getMessage().length()>0) {
 
 
-                        textViewSend.setText(txtBody.getMessage());
+
+                        textViewSend.setText(Html.fromHtml(txtBody.getMessage()));
 
 
                 }

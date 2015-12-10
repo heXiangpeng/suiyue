@@ -10,11 +10,14 @@ import android.content.IntentFilter;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
+import android.graphics.drawable.Drawable;
+import android.hardware.input.InputManager;
 import android.os.Build;
 import android.os.Bundle;
 
 import android.os.Message;
 import android.support.design.widget.FloatingActionButton;
+import android.text.Html;
 import android.util.Log;
 
 import android.view.GestureDetector;
@@ -25,8 +28,12 @@ import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.view.animation.TranslateAnimation;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.GridView;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -46,6 +53,7 @@ import java.util.List;
 
 import adapter.ContactListAdapter;
 
+import adapter.EmoijAdapter;
 import dbutil.DataBaseSuiyue;
 import me.imid.swipebacklayout.lib.SwipeBackLayout;
 import me.imid.swipebacklayout.lib.app.SwipeBackActivity;
@@ -60,9 +68,16 @@ public class ContactActivity extends Activity implements View.OnClickListener,Vi
 
     private SwipeBackLayout mSwipeBackLayout;
 
+    private GridView gridViewEmoij;
 
+    private EmoijAdapter emoijAdapter;
+
+
+    private ImageButton imageButtonEmoij;
     private GestureDetector gestureDetector;
 
+
+    private InputMethodManager inputMethodManager;
 
     private ImageView photo;
     private TextView name;
@@ -94,6 +109,13 @@ public class ContactActivity extends Activity implements View.OnClickListener,Vi
 
 
     newmess msgReceiver;
+
+
+    private String[] emoij = {"[first]","[second]","[third]","[forth]"};
+    private int[] emoijid = {R.drawable.emoij1,R.drawable.emoij2,R.drawable.emoij3,R.drawable.emoij4};
+
+
+    String chatMEssage = "";
 
 
     static ContactListAdapter adapter;
@@ -153,7 +175,7 @@ public class ContactActivity extends Activity implements View.OnClickListener,Vi
 
     @Override
     public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
-     Log.e("滑动","滑动");
+
       if(e2.getX()-e1.getX()>180 && Math.abs(velocityX)>0){
           Intent main=new Intent(ContactActivity.this,MianHome.class);
           startActivity(main);
@@ -331,11 +353,32 @@ public class ContactActivity extends Activity implements View.OnClickListener,Vi
         switch (id) {
 
 
+            case R.id.text_message:
+                gridViewEmoij.setVisibility(View.GONE);
+
+
+                break;
+            case R.id.imgbtn_emoij:
+
+                if(gridViewEmoij.getVisibility() == View.VISIBLE){
+                    gridViewEmoij.setVisibility(View.GONE);
+                }else{
+                    gridViewEmoij.setVisibility(View.VISIBLE);
+
+                   inputMethodManager.hideSoftInputFromWindow(textMessage.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+                }
+
+
+                break;
+
             case R.id.contact_send:
 
                 if (!textMessage.getText().toString().isEmpty()) {
 
                     Log.e("用户ID", idcode);
+
+
+                    Log.e("聊天信息",textMessage.getText().toString());
 
                     EMConversation conversation = EMChatManager.getInstance().getConversation(idcode);
 //创建一条文本消息
@@ -426,9 +469,51 @@ public class ContactActivity extends Activity implements View.OnClickListener,Vi
     }
 
     void initview() {
+
+
+        inputMethodManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
         photo = (ImageView) findViewById(R.id.img_contact_photo);
         name = (TextView) findViewById(R.id.text_contact_name);
 
+
+
+        imageButtonEmoij = (ImageButton) findViewById(R.id.imgbtn_emoij);
+
+
+
+        imageButtonEmoij.setOnClickListener(this);
+        gridViewEmoij = (GridView) findViewById(R.id.emoijview);
+
+
+
+
+        gridViewEmoij.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+
+
+
+//             chatMEssage+=emoij[position];
+
+
+
+                String mes = textMessage.getText().toString();
+
+                textMessage.setText(transferBiaoqing(mes,emoijid[position]));
+
+
+            }
+        });
+
+
+
+
+
+
+        emoijAdapter = new EmoijAdapter(getLayoutInflater());
+
+        gridViewEmoij.setAdapter(emoijAdapter);
 
 
 
@@ -442,6 +527,8 @@ public class ContactActivity extends Activity implements View.OnClickListener,Vi
 
         textMessage = (EditText) findViewById(R.id.text_message);
 
+        textMessage.setOnClickListener(this);
+
 
         sendbutton = (FloatingActionButton) findViewById(R.id.contact_send);
         listmessage = (ListView) findViewById(R.id.list_contact);
@@ -451,6 +538,32 @@ public class ContactActivity extends Activity implements View.OnClickListener,Vi
         back.setAnimation(an);
 
     }
+
+
+
+
+    public CharSequence transferBiaoqing(String message,int emoijid){
+
+
+        return Html.fromHtml(message+"<img src=\""+emoijid+"\">",imageGetter,null);
+    }
+
+
+    private Html.ImageGetter imageGetter = new Html.ImageGetter() {
+
+         @Override
+        public Drawable getDrawable(String source) {
+            int id = Integer.parseInt(source);
+
+
+            // 根据id从资源文件中获取图片对象
+            Drawable d = ContactActivity.this.getApplicationContext().getResources().getDrawable(id);
+            // 以此作为标志位，方便外部取出对应的资源id
+            d.setState(new int[] { id });
+            d.setBounds(0, 0, d.getIntrinsicWidth(), d.getIntrinsicHeight());
+            return d;
+        }
+    };
 
 
     class newmess extends BroadcastReceiver {
